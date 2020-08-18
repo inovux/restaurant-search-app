@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import yelp from '../api/yelp'
 
 export const useRestaurants = () => {
-  const [restaurants, setRestaurants] = useState('')
+  const [restaurants, setRestaurants] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
 
   const searchApi = async (term) => {
