@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useRestaurants } from '../hooks/useRestaurants'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import SearchBar from '../components/SearchBar'
 import RestaurantsList from '../components/RestaurantsList'
 
@@ -13,7 +13,7 @@ const SearchScreen = () => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -21,22 +21,28 @@ const SearchScreen = () => {
       />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {restaurants.length} results</Text>
-      <RestaurantsList
-        restaurants={filterResultsByPrice('$')}
-        title="Cost Effective"
-      />
-      <RestaurantsList
-        restaurants={filterResultsByPrice('$$')}
-        title="Bit Pricier"
-      />
-      <RestaurantsList
-        restaurants={filterResultsByPrice('$$$')}
-        title="Big Spender"
-      />
+      <ScrollView>
+        <RestaurantsList
+          restaurants={filterResultsByPrice('$')}
+          title="Cost Effective"
+        />
+        <RestaurantsList
+          restaurants={filterResultsByPrice('$$')}
+          title="Bit Pricier"
+        />
+        <RestaurantsList
+          restaurants={filterResultsByPrice('$$$')}
+          title="Big Spender"
+        />
+      </ScrollView>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
 
 export default SearchScreen
