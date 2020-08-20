@@ -11,7 +11,7 @@ export const useRestaurants = () => {
         params: {
           limit: 50,
           term: term,
-          location: 'hong kong',
+          location: 'Hong Kong',
         },
       })
 
