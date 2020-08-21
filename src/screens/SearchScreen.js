@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import SearchBar from '../components/SearchBar'
 import RestaurantsList from '../components/RestaurantsList'
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchApi, restaurants, errorMessage] = useRestaurants()
 
@@ -24,17 +24,14 @@ const SearchScreen = ({ navigation }) => {
         <RestaurantsList
           restaurants={filterResultsByPrice('$')}
           title="Cost Effective"
-          navigation={navigation}
         />
         <RestaurantsList
           restaurants={filterResultsByPrice('$$')}
           title="Bit Pricier"
-          navigation={navigation}
         />
         <RestaurantsList
           restaurants={filterResultsByPrice('$$$')}
           title="Big Spender"
-          navigation={navigation}
         />
       </ScrollView>
     </View>
