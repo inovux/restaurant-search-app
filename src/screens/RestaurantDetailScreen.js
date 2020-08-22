@@ -20,10 +20,21 @@ const RestaurantDetailScreen = ({ navigation }) => {
     return null
   }
 
+  const categories = restaurant.categories
+    .map((category) => category.title)
+    .join(' • ')
+
   return (
-    <View>
-      <Text>Restaurant detail screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{restaurant.name}</Text>
+      <Text style={styles.description}>
+        Rating: {restaurant.rating} • {categories} •{' '}
+        {restaurant.location.display_address[0]} • {restaurant.display_phone}
+      </Text>
       <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.photos}
         data={restaurant.photos}
         keyExtractor={(photo) => photo}
         renderItem={({ item }) => {
@@ -35,10 +46,22 @@ const RestaurantDetailScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    marginVertical: 5,
+    marginHorizontal: 15,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  description: {
+    marginBottom: 10,
+    marginHorizontal: 15,
+    color: '#a2a2a2',
+  },
   image: {
     height: 200,
     width: 300,
-  }
+    marginLeft: 15,
+  },
 })
 
 export default RestaurantDetailScreen
